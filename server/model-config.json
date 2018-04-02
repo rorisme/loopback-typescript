@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "example": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Account": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "replaceById": true,
+          "findById": true,
+          "verify": true,
+          "changePassword": true
+        },
+        "scopes": {
+          "accessTokens": {
+            "*": false
+          },
+          "todos": {
+            "count": false,
+            "delete": false
+          }
+        }
+      }
+    }
+  },
+  "Todo": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "findOne": false,
+          "upsert": false,
+          "updateAll": false,
+          "createChangeStream": false,
+          "count": false,
+          "exists": false,
+          "replaceById": false,
+          "replaceOrCreate": false,
+          "upsertWithWhere": false,
+          "allTodos": false
+        },
+        "scopes": {
+          "account": {
+            "get": false
+          }
+        }
+      }
+    }
+  }
+}
